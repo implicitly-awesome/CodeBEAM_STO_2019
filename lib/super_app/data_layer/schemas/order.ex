@@ -1,13 +1,15 @@
 defmodule SuperApp.Order do
   use Ecto.Schema
-  alias SuperApp.{User, PromoCode}
+  alias SuperApp.{User, OrderItem}
+
+  @derive {Jason.Encoder, only: [:id, :number, :value]}
 
   schema "orders" do
     field :number, :integer
     field :value, :float
 
     belongs_to(:user, User)
-    belongs_to(:promo_code, PromoCode)
+    has_many(:order_items, OrderItem)
 
     timestamps()
   end

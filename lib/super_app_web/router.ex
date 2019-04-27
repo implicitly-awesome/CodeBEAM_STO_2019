@@ -12,7 +12,6 @@ defmodule SuperAppWeb.Router do
 
     resources "/users", UserController, only: [:show, :create, :update, :delete] do
       resources "/orders", OrderController, only: [:index, :show, :create, :update, :delete]
-      resources "/promo_codes", PromoCodeController, only: [:index, :create, :delete]
     end
   end
 end
