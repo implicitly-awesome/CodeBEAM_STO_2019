@@ -1,26 +1,18 @@
 defmodule SuperAppWeb.Router do
   use SuperAppWeb, :router
 
-  pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-  end
-
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", SuperAppWeb do
-    pipe_through :browser
+    pipe_through :api
 
     get "/", PageController, :index
-  end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SuperAppWeb do
-  #   pipe_through :api
-  # end
+    resources "/users", UserController, only: [:show, :create, :update, :delete] do
+      resources "/orders", OrderController, only: [:index, :show, :create, :update, :delete]
+      resources "/promo_codes", PromoCodeController, only: [:index, :create, :delete]
+    end
+  end
 end
