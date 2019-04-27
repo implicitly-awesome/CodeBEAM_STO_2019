@@ -1,20 +1,15 @@
-# SuperApp
+# Exop on StreamData Demo app
 
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+  * Visit [`localhost:4000`](http://localhost:4000) from your browser
 
 ## Learn more
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  * [Original article](https://medium.com/@andreichernykh/https-medium-com-andreichernykh-exop-on-streamdata-75a2115d150d)
+  * [Exop](https://github.com/madeinussr/exop)
+  * [ExopData](https://github.com/madeinussr/exop_data)
+  * [StreamData](https://github.com/whatyouhide/stream_data)
