@@ -7,7 +7,7 @@ config :super_app, SuperAppWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :error
 
 # Configure your database
 config :super_app, SuperApp.Repo,
