@@ -3,7 +3,7 @@ defmodule SuperApp.Operations.DeleteUser do
 
   alias SuperApp.{Repo, User, UserQuery}
 
-  parameter "id", type: :integer, numericality: %{gt: 0}, coerce_with: &__MODULE__.id_to_int/1
+  parameter "id", type: :integer, numericality: %{greater_than: 0}, coerce_with: &__MODULE__.id_to_int/1
 
   def id_to_int(str_id) do
     case Integer.parse(str_id) do

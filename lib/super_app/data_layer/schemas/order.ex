@@ -6,7 +6,6 @@ defmodule SuperApp.Order do
 
   schema "orders" do
     field :number, :integer
-    field :value, :float
 
     belongs_to(:user, User)
     has_many(:order_items, OrderItem)
