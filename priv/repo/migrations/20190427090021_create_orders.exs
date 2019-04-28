@@ -3,6 +3,7 @@ defmodule SuperApp.Repo.Migrations.CreateOrders do
 
   def change do
     create table(:orders) do
+      # add(:number, :integer)
       add(:number, :bigint)
 
       add(:user_id, references(:users, on_delete: :nothing))

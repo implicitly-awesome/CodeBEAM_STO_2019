@@ -17,8 +17,8 @@ defmodule SuperApp.Operations.CreateOrder do
     with %User{} = user <- UserQuery.find(params.user_id),
          {:ok, %Order{} = order} <- create_order(user),
          :ok <- add_order_items(order, params.items) do
-      order
-      # order |> Repo.preload(:order_items)
+      # order
+      order |> Repo.preload(:order_items)
     else
       nil -> {:error, :unknown_user}
       error -> error
@@ -47,7 +47,7 @@ defmodule SuperApp.Operations.CreateOrder do
 
   defp order_number do
     {:ok, now} = DateTime.now("Etc/UTC")
-    DateTime.to_unix(now)
-    # DateTime.to_unix(now, :nanosecond)
+    # DateTime.to_unix(now)
+    DateTime.to_unix(now, :nanosecond)
   end
 end
