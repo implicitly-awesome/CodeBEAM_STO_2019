@@ -5,8 +5,21 @@ defmodule SuperApp.Operations.CreateUser do
 
   alias SuperApp.{Repo, User}
 
-  parameter :name, type: :string, regex: ~r/^(?!\s*$).+/
-  parameter :email, type: :string, regex: ~r/@/
+  @not_empty_string [type: :string, regex: ~r/^(?!\s*$).+/]
+
+  parameter :name, @not_empty_string
+  parameter :email, @not_empty_string
+  parameter :age, type: :integer, numericality: %{greater_than: 0, less_than: 200}
+  parameter :meta, inner: %{
+    favorite_color: [in: ~w(red green white)],
+    uuid: [type: :uuid],
+    smth: [inner: %{
+      a: [type: :atom],
+      b: [inner: %{
+        c: [type: :integer]
+      }]
+    }]
+  }
 
   def process(%{name: _name, email: _email} = params) do
     %User{}

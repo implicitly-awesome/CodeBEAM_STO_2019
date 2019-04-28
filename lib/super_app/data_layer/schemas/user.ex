@@ -7,6 +7,8 @@ defmodule SuperApp.User do
   schema "users" do
     field :email, :string
     field :name, :string
+    field :age, :integer, virtual: true
+    field :meta, :map, virtual: true
 
     has_many(:orders, Order)
 
