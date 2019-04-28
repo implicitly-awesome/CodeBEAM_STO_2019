@@ -3,5 +3,5 @@ defmodule SuperApp.UserQuery do
 
   def find(user_id), do: Repo.get(User, user_id)
 
-  def by_email(user_email), do: Repo.get_by(User, user_email)
+  def by_email(user_email), do: Repo.get_by(User, email: user_email)
 end

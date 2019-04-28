@@ -5,6 +5,15 @@ defmodule SuperApp.Operations.Order.CreateOrderPropTest do
   alias SuperApp.{User, Order}
   alias SuperApp.Operations.CreateOrder
 
+  setup do
+    {:ok, user} =
+      %User{}
+      |> cast(%{name: "test1", email: "test1@test.com"}, ~w(name email)a)
+      |> Repo.insert(returning: true)
+
+    {:ok, user: user}
+  end
+
   describe "with unknown user id" do
     property "returns an error" do
       check_operation(CreateOrder, [], fn _params ->
@@ -13,15 +22,10 @@ defmodule SuperApp.Operations.Order.CreateOrderPropTest do
     end
   end
 
-  property "creates an order" do
+  property "creates an order", %{user: user} do
     before = Repo.aggregate(Order, :count, :id)
 
-    {:ok, user} =
-      %User{}
-      |> cast(%{name: "test1", email: "test1@test.com"}, ~w(name email)a)
-      |> Repo.insert(returning: true)
-
-    custom = ~g[user_id: user.id]
+    custom = ~g[user_email: user.email]
 
     check all params <- generate(CreateOrder, generators: custom) do
       result = CreateOrder.run(params)

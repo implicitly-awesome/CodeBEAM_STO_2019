@@ -3,7 +3,7 @@ defmodule SuperApp.Operations.CreateOrder do
   import Ecto.Changeset
   alias SuperApp.{Repo, User, Order, OrderItem, UserQuery}
 
-  parameter :user_id, type: :integer, numericality: %{greater_than: 0}
+  parameter :user_email, type: :string, format: ~r/@/
 
   parameter :items, type: :list, length: %{min: 1}, list_item: %{
     inner: %{
@@ -14,7 +14,7 @@ defmodule SuperApp.Operations.CreateOrder do
   }
 
   def process(params) do
-    with %User{} = user <- UserQuery.find(params.user_id),
+    with %User{} = user <- UserQuery.by_email(params.user_email),
          {:ok, %Order{} = order} <- create_order(user),
          :ok <- add_order_items(order, params.items) do
       # order

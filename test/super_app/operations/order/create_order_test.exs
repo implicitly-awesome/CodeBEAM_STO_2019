@@ -22,7 +22,7 @@ defmodule SuperApp.Operations.Order.CreateOrderTest do
 
   describe "with valid params" do
     test "creates an order", %{user: user, items: items} do
-      result = CreateOrder.run(user_id: user.id, items: items)
+      result = CreateOrder.run(user_email: user.email, items: items)
 
       assert {:ok, %Order{} = order} = result
       assert is_integer(order.number) and order.number > 0
@@ -32,7 +32,7 @@ defmodule SuperApp.Operations.Order.CreateOrderTest do
 
   describe "with unknown user id" do
     test "returns an error", %{items: items} do
-      assert CreateOrder.run(user_id: 777, items: items) == {:error, :unknown_user}
+      assert CreateOrder.run(user_email: "asd@asd", items: items) == {:error, :unknown_user}
     end
   end
 
@@ -43,7 +43,7 @@ defmodule SuperApp.Operations.Order.CreateOrderTest do
         %{"name" => "item_1", "price" => 1.1, "quantity" => "1"}
       ]
 
-      assert CreateOrder.run(user_id: user.id, items: items) == {:error, {:validation, %{
+      assert CreateOrder.run(user_email: user.email, items: items) == {:error, {:validation, %{
         "items[1][:quantity]" => ["not a number", "has wrong type"]
       }}}
     end
