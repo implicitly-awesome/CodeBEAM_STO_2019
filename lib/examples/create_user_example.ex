@@ -1,8 +1,8 @@
 defmodule CreateUser do
-  use Exop.Operation
   import Ecto.Changeset
-
   alias SuperApp.{User, Repo}
+
+  use Exop.Operation
 
   parameter :name, type: :string, length: %{min: 1, max: 254}
   parameter :email, type: :string, regex: ~r/\w+@google\.com/
