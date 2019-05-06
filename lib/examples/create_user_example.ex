@@ -4,7 +4,7 @@ defmodule CreateUser do
 
   use Exop.Operation
 
-  parameter :name, type: :string, length: %{min: 1, max: 254}
+  parameter :name, type: :string, length: %{min: 1}
   parameter :email, type: :string, regex: ~r/\w+@google\.com/
 
   def process(params) do

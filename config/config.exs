@@ -29,7 +29,7 @@ config :phoenix, :json_library, Jason
 
 config :postgrex, :json_library, Jason
 
-config :stream_data, max_runs: 100
+config :stream_data, max_runs: 300
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

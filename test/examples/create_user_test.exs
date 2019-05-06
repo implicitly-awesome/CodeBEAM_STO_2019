@@ -10,5 +10,5 @@ defmodule CreateUserTest do
       assert is_binary(user.name)
       assert String.contains?(user.email, "@google.com")
     end
-  end
+ end
 end
