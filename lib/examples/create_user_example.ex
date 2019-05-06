@@ -7,7 +7,7 @@ defmodule CreateUser do
   parameter :name, type: :string, length: %{min: 1, max: 254}
   parameter :email, type: :string, regex: ~r/\w+@google\.com/
 
-  def process(%{name: _name, email: _email} = params) do
+  def process(params) do
     %User{}
     |> cast(params, [:name, :email])
     |> Repo.insert()
