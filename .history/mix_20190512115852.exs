@@ -44,7 +44,7 @@ defmodule SuperApp.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:exop, "~> 1.2.5"},
-      {:exop_data, "~> 0.1.7"}
+      {:exop_data, "~> 0.1.6"}
     ]
   end
 

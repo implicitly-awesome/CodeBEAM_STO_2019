@@ -1,0 +1,18 @@
+defmodule CreateUserTest do
+  use SuperApp.DataCase
+  use ExopData
+
+  alias SuperApp.{Repo, User}
+
+  property "creates a user" do
+    custom = ~g[
+      meta: %{favorite_color: "blue"}
+    ]
+
+    check all params <- ExopData.generate(CreateUser, generators: custom) do
+      IO.inspect(params[:meta][:favorite_color])
+      result = CreateUser.run(params)
+      assert {:ok, %User{}} = result
+    end
+  end
+end

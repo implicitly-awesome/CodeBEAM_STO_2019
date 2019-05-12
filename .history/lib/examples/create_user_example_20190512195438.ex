@@ -9,7 +9,7 @@ defmodule CreateUser do
 
   def process(%{name: _, email: _} = params) do
     %User{}
-    |> cast(params, [:name, :email])
+    |> cast(params, [:name, :email, :meta])
     |> Repo.insert()
   end
 end
